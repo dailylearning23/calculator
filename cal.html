@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Untitled Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        input {
+            width: 100%;
+            background-color: rgb(201, 211, 197);
+            border-radius: 5px;
+        }
+        
+        .btn {
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        .container {
+            margin-left: 30%;
+        }
+        /* div {
+            border: 1px solid black;
+        } */
+        
+        @media (max-width: 420px) {
+            td {
+                width: 100px;
+                height: 40px;
+            }
+            /* table {
+                margin-left: 10%;
+                margin-right: 20%;
+            } */
+            table {
+                width: 250px;
+                margin: 0px;
+            }
+            .container {
+                margin: 0px;
+                width: 250px;
+                padding: 0px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-4">
+        <table height="200px" border="1" cellspacing="0" cellpadding="2" class="tb">
+            <tr>
+                <th height="56" colspan="4" scope="col"><input type="text" name="" id="result" value="" style="height:50px;width: 98%;"></th>
+            </tr>
+
+            <tr>
+                <td> <input type="button" value="Clr" class="btn btn-primary" onclick="clr()"></td>
+                <td><input type="button" value="%" onclick="operation('%')"></td>
+                <td><input type="button" value="👈" class="btn btn-danger" onclick="prev_clear()"></td>
+
+                <td><input type="button" value="/" onclick="operation('/')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="7" onclick="operation('7')"></td>
+                <td><input type="button" value="8" onclick="operation('8')"></td>
+                <td><input type="button" value="9" onclick="operation('9')"></td>
+                <td><input type="button" value="*" onclick="operation('*')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="4" onclick="operation('4')"></td>
+                <td><input type="button" value="5" onclick="operation('5')"></td>
+                <td><input type="button" value="6" onclick="operation('6')"></td>
+                <td><input type="button" value="-" onclick="operation('-')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="1" onclick="operation('1')"></td>
+                <td><input type="button" value="2" onclick="operation('2')"></td>
+                <td><input type="button" value="3" onclick="operation('3')"></td>
+                <td><input type="button" value="+" onclick="operation('+')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="00" onclick="operation('00')"></td>
+                <td><input type="button" value="0" onclick="operation('0')"></td>
+                <td><input type="button" value="." onclick="operation('.')"></td>
+                <td><input type="button" value="=" class="btn btn-success" onclick="res()"></td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+<script src="javascript/jquery/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script>
+    var count = 0;
+    var old = [];
+    var i = 0;
+
+    function prev_clear() {
+        var len = old.length;
+        if (len == 1) {
+            clr();
+        } else {
+
+            document.getElementById("result").setAttribute("value", old.pop(old.length));
+        }
+
+
+    }
+
+    function operation(val) {
+
+        old.push(document.getElementById("result").value);
+        document.getElementById("result").setAttribute("value", document.getElementById("result").getAttribute("value") + val);
+
+
+    }
+
+    function clr() {
+        document.getElementById("result").setAttribute("value", "");
+    }
+
+    function res() {
+        var x = document.getElementById("result").value;
+        var y = eval(x);
+        document.getElementById("result").setAttribute("value", y);
+
+
+    }
+</script>
+
+</html>
